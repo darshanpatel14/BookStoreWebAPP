@@ -1,3 +1,5 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <div align="center">
 
 	<img src="../images/BookstoreAdminLogo.png"/>
@@ -5,7 +7,7 @@
 
 	<div>
 
-	Welcome, Admin | <a href="logout">Logout</a>
+	Welcome, <c:out value="${sessionScope.useremail }" />| <a href="logout">Logout</a>
 	<br/><br/>
 
 
@@ -33,7 +35,7 @@
 	</div>
 	
 	<div >
-		<a href="books">
+		<a href="list_books">
 		<img src="../images/bookstack.png" /><br/>
 		
 		Books
