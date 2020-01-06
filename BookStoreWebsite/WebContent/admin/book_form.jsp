@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+    <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
     
 <!DOCTYPE html>
 <html>
@@ -37,12 +38,12 @@
 	<div align="center">
 	
 	<c:if test="${Book != null }">
-		<form action="update_user" method="post" id="userForm">
-		<input type="hidden" name="userId" value="${user.userId}">
+		<form action="update_book" method="post" id="bookForm" enctype="multipart/form-data">
+		<input type="hidden" name="bookId" value="${book.bookId}" >
 	</c:if>
 	
 	<c:if test="${Book == null }">
-		<form action="create_book" method="post" id="bookForm">
+		<form action="create_book" method="post" id="bookForm" enctype="multipart/form-data" >
 	</c:if>
 		
 		<table class="form">
@@ -55,8 +56,18 @@
 						<select name="catagory">
 						
 								<c:forEach items="${listCatagory}" var="catagory">
-									
-									<option value="${catagory.catagoryId}">	
+								
+										<c:if test="${catagory.catagoryId eq book.catagory.catagoryId }">
+										
+											<option value="${catagory.catagoryId}" selected>	
+										
+										</c:if>
+										
+										<c:if test="${catagory.catagoryId ne book.catagory.catagoryId }">
+											
+											<option value="${catagory.catagoryId}" >	
+											
+										</c:if>
 									
 											${catagory.name}
 									
@@ -98,16 +109,19 @@
 				<tr>
 				
 						<td align="right">Publish Date:</td>
-						<td align="left"><input type="text" id="publishDate" name="publishDate" value="${book.publishDate}" size="20"/>
+						<td align="left"><input type="text" id="publishDate" name="publishDate" 
+						value="<fmt:formatDate pattern="MM/dd/yyyy" value='${book.publishDate }' />" size="20"/>
 				
 				</tr>
 				
 				<tr>
-				
-						<td align="right">Book Image:</td>
-						<td align="left"><input type="file" id="bookImage" name="bookImage"  size="20"></br>
-						<img id="thumbnail" alt="Image Preview" style="width:20%; margin-top: 10px"/>
-						</td>
+				<td align="right">Book Image:</td>
+				<td align="left">
+					<input type="file" id="bookImage" name="bookImage" size="20" /><br/>
+					<img id="thumbnail" alt="Image Preview" style="width:20%; margin-top: 10px"
+						src="data:image/jpg;base64,${book.base64Image}"
+					 />
+				</td>
 				
 				</tr>
 				
@@ -124,7 +138,7 @@
 				
 						<td align="right">Description:</td>
 						<td align="left">
-						<textarea rows="5" cols="50" name="description" id="description"></textarea>
+						<textarea rows="5" cols="50" name="description" id="description">${book.description}</textarea>
 						</td>
 				</tr>
 				
@@ -171,7 +185,12 @@
 				author : "required",
 				isbn : "required",
 				publishDate : "required",
-				bookImage : "required",
+				
+
+				<c:if test="${book == null}">
+				bookImage: "required",
+				</c:if>
+				
 				price:"required",
 				description:"required"
 			},
@@ -197,19 +216,16 @@
 		
 	});
 	
-	function showImageThumbnail(fileInput){
-		
+	function showImageThumbnail(fileInput) {
 		var file = fileInput.files[0];
 		
 		var reader = new FileReader();
-		reader.onload = function(e){
 		
-		$("#thumbnail").attr('src',e.target.result);
+		reader.onload = function(e) {
+			$('#thumbnail').attr('src', e.target.result);
+		};
 		
-	};
-	
-	reader.readAsDataURL(file);
-	
+		reader.readAsDataURL(file);
 	}
 	
 	/* function validateFormInput(){
