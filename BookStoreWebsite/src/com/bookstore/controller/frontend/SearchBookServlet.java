@@ -1,4 +1,4 @@
-package com.bookstore.controller.admin.book;
+package com.bookstore.controller.frontend;
 
 import com.bookstore.controller.BaseServlet;
 import com.bookstore.service.BookServices;
@@ -9,20 +9,20 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/admin/list_books")
-public class ListBookServlet extends BaseServlet {
+
+@WebServlet("/search")
+public class SearchBookServlet extends BaseServlet {
 	private static final long serialVersionUID = 1L;
 
-    
-    public ListBookServlet() {
+    public SearchBookServlet() {
         // TODO Auto-generated constructor stub
     }
 
+	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		BookServices bookServices = new BookServices(entityManager,request,response);
-		
-		bookServices.listBooks();
+		bookServices.search();
 	}
 
 }

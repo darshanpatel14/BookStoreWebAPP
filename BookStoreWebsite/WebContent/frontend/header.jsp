@@ -8,9 +8,11 @@
 	</div>
 	
 	<div>
-	
-			<input type="text" name="keyword" size="50"/>
-			<input type="button"  value="search" />
+			<form action="search" method="get">
+				<input type="text" name="keyword" size="50"/>
+				<Button type="submit">Search</Button>
+			</form>
+			
 			
 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 			
@@ -24,9 +26,9 @@
 	<div>
 	
 		<c:forEach var="catagory" items="${listCatagory}" varStatus="status">
-			<a href="view_catagory?id="${catagory.catagoryId}">
+			<a href="view_catagory?id=${catagory.catagoryId}" >
 			
-			<font size="+1"><b><c:out value="${catagory.name}" /> </b></font>
+				<font size="+1"><b><c:out value="${catagory.name}" /> </b></font>
 			</a>
 			<c:if test="${not status.last }">
 			&nbsp; | &nbsp;

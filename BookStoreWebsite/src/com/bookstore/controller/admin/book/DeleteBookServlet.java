@@ -11,25 +11,17 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 
-@WebServlet("/admin/create_book")
-@MultipartConfig(
-		fileSizeThreshold = 1024 * 10,	// 10 KB
-		maxFileSize = 1024 * 300,		// 300 KB
-		maxRequestSize = 1024 * 1024	// 1 MB 
-)
+@WebServlet("/admin/delete_book")
 
-public class CreateBookServlet extends BaseServlet {
+public class DeleteBookServlet extends BaseServlet {
 	private static final long serialVersionUID = 1L;
 
-    public CreateBookServlet() {
-        // TODO Auto-generated constructor stub
-    }
 
-	
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		BookServices bookServices = new BookServices(entityManager,request,response);
-		bookServices.createBook();
+		
+		bookServices.deleteBook();
 	}
 
 }

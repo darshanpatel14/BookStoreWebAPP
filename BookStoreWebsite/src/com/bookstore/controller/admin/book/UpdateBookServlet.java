@@ -13,23 +13,22 @@ import javax.servlet.http.HttpServletResponse;
 
 @WebServlet("/admin/update_book")
 @MultipartConfig(
-		fileSizeThreshold=1024 * 10, //10kb
-		maxFileSize = 1024 * 300,  //300kb
-		maxRequestSize = 1024 *1024 //1 mb
-	)
+		fileSizeThreshold = 1024 * 10,	// 10 KB
+		maxFileSize = 1024 * 300,		// 300 KB
+		maxRequestSize = 1024 * 1024	// 1 MB 
+)
 public class UpdateBookServlet extends BaseServlet {
 	private static final long serialVersionUID = 1L;
 
+    
     public UpdateBookServlet() {
-        // TODO Auto-generated constructor stub
+       
     }
 
-	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		BookServices bookServices  = new BookServices(entityManager,request,response);
+		BookServices bookServices = new BookServices(entityManager,request,response);
 		bookServices.updateBook();
-		
 	}
 
 }

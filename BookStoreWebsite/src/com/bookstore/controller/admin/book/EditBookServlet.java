@@ -14,15 +14,18 @@ import javax.servlet.http.HttpServletResponse;
 public class EditBookServlet extends BaseServlet {
 	private static final long serialVersionUID = 1L;
 
+    
     public EditBookServlet() {
-       
+        //
     }
 
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	
+		BookServices bookServices = new BookServices(entityManager,request,response);
 		
-		BookServices bookServices  = new BookServices(entityManager,request,response);
 		bookServices.editBook();
+		
 	}
 
 }

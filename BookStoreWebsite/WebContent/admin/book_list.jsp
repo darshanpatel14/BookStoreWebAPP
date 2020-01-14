@@ -1,11 +1,12 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %> 
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Manage Books</title>
+<title>Manage Users</title>
 
 <link rel="stylesheet" href="../css/style.css">
 <script type="text/javascript" src="../js/jquery-3.4.1.min.js"></script>
@@ -17,9 +18,9 @@
 	
 	<div align="center">
 	
-	<h2 class="pageheading"> Books Management </h2><br/>
+	<h2 class="pageheading"> Book Management </h2><br/>
 	
-	<h3><a href="new_book">Create New Book</a></h3>
+	<h3><a href="new_book">Create New book</a></h3>
 	
 	</div>
 	
@@ -47,7 +48,6 @@
 				<th>Price</th>
 				<th>Last Updated</th>
 				<th>Actions</th>
-				
 		
 			</tr>
 			
@@ -57,22 +57,24 @@
 				
 					<td>${status.index + 1}</td>
 					<td>${book.bookId}</td>
+					
 					<td>
 					
-						<img src="data:image/jpg;base64,${book.base64Image}" widhth="84" height="110"/>
+						<img src="data:image/jpg;base64,${book.base64Image}" width="84" height="110"/>
+					
 					
 					</td>
+					
 					<td>${book.title}</td>
 					<td>${book.author}</td>
 					<td>${book.catagory.name}</td>
-					<td>${book.price}</td>
-					<td>${book.lastUpdateTime}</td>
-					
+					<td>$ ${book.price}</td>
+					<td><fmt:formatDate pattern="MM/dd/yyyy" value='${book.publishDate}'/></td>
 					
 					<td> 
 					
-							<a href="edit_book?id=${book.bookId }">Edit</a> &nbsp;
-							<a href="javascript:void(0);" class="deleteLink" id="${book.bookId }">Delete</a>
+							<a href="edit_book?id=${book.bookId}">Edit</a> &nbsp;
+							<a href="javascript:void(0);" class="deleteLink" id="${book.bookId}">Delete</a>
 					
 					</td>
 				
@@ -97,19 +99,15 @@
 		
 			$(this).on("click",function(){
 				
-				userId= $(this).attr("id");
-				if(	confirm("Are You Sure You Want To Delete user with Id " + userId + " ?")){
-					window.location ="delete_user?id=" + userId;
+				bookId= $(this).attr("id");
+				if(	confirm("Are You Sure You Want To Delete book with Id " + bookId + " ?")){
+					window.location ="delete_book?id=" + bookId;
 				}
 				
 			});
 		});
 	});
-			/* function confirmDelete(userId){
-			if(	confirm("Are You Sure You Want To Delete user with Id " + userId + " ?")){
-				window.location ="delete_user?id=" + userId;
-			}
-			} */
+			
 	
 	</script>
 	
