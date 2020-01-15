@@ -123,7 +123,7 @@ public class Book implements java.io.Serializable {
 		this.bookId = bookId;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "catagory_id", nullable = false)
 	public Catagory getCatagory() {
 		return this.catagory;

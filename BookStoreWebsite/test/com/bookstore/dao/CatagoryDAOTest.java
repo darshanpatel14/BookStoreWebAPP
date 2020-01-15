@@ -25,7 +25,7 @@ EntityManagerFactory entityManagerFactory=Persistence.createEntityManagerFactory
 		
 		EntityManager entityManager = entityManagerFactory.createEntityManager();
 		
-		catagoryDao= new  CatagoryDAO(entityManager);
+		catagoryDao= new  CatagoryDAO();
 	}
 
 	@AfterClass

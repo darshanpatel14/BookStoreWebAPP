@@ -24,7 +24,7 @@ EntityManagerFactory entityManagerFactory=Persistence.createEntityManagerFactory
 		
 		EntityManager entityManager = entityManagerFactory.createEntityManager();
 		
-		UserDAO userDAO = new UserDAO(entityManager);
+		UserDAO userDAO = new UserDAO();
 	}
 
 	@Test
