@@ -209,10 +209,11 @@ public class BookServices {
 		
 		Book existBook = bookDAO.get(bookId);
 		
-		if(!existBook.equals(bookByTitle)) {
+		if(bookByTitle != null && !existBook.equals(bookByTitle)) {
 			
 			String message = "Could not update book because There's another book  having same title.";
 			listBooks(message);
+			return;
 		}
 		
 		readBookFields(existBook);

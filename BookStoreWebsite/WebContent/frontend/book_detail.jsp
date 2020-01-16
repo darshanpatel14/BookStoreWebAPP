@@ -11,8 +11,8 @@
 <body>
 		<jsp:directive.include file="header.jsp" />
 	
-		<div class="center" >
-		<table class="book">
+		<div align="center" >
+		<table width="80%" style="border:0">
 			<tr >
 				<td colspan="3" align="left" >
 				<h2>${book.title}</h2> by ${book.author}

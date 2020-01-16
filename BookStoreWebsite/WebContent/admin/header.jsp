@@ -2,8 +2,9 @@
 
 <div align="center">
 
+	<a href="${pageContext.request.contextPath}/admin/">
 	<img src="../images/BookstoreAdminLogo.png"/>
-
+	</a>
 
 	<div>
 
@@ -45,7 +46,7 @@
 	</div>
 	
 	<div  >
-		<a href="customer">
+		<a href="list_customer">
 		<img src="../images/customer.png" /><br/>
 		
 		Customers

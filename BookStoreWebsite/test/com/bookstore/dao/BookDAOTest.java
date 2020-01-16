@@ -21,7 +21,7 @@ import org.junit.Test;
 import com.bookstore.entity.Book;
 import com.bookstore.entity.Catagory;
 
-public class BookDAOTest extends BaseDAOTest {
+public class BookDAOTest  {
 	
 	private static BookDAO bookDAO;
 
@@ -281,6 +281,17 @@ public class BookDAOTest extends BaseDAOTest {
 		
 		
 		assertEquals(1,result.size());
+		
+	}
+	
+	@Test
+	public void testCountByCatagory() {
+		
+		int catagoryId  = 12;
+		
+		long noOfBooks = bookDAO.countByCatagory(catagoryId);
+		
+		assertTrue(noOfBooks == 6);
 		
 	}
 

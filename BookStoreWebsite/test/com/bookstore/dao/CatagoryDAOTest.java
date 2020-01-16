@@ -43,6 +43,8 @@ EntityManagerFactory entityManagerFactory=Persistence.createEntityManagerFactory
 		
 		assertTrue(catagory != null && catagory.getCatagoryId() > 0);
 	}
+	
+	
 
 	@Test
 	public void testUpdateCatagory() {

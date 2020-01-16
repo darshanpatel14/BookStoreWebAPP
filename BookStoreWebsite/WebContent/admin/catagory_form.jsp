@@ -79,7 +79,6 @@ create new Catagory
 </body>
 
 <script type="text/javascript">
-
 $(document).ready(function(){
 	
 	$("#catagoryForm").validate({
