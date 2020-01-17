@@ -13,8 +13,7 @@ public class CustomerDAO extends JpaDAO<Customer> implements GenericDAO<Customer
 	public Customer create(Customer customer) {
 					
 		customer.setRegisterDate(new Date());
-		
-				return super.create(customer);
+		return super.create(customer);
 	}
 
 	@Override

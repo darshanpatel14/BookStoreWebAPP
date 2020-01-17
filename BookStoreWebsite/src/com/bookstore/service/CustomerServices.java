@@ -23,6 +23,7 @@ public class CustomerServices {
 		super();
 		this.request = request;
 		this.response = response;
+		customerDAO = new CustomerDAO();
 	}
 	
 	public void listCustomers(String message) throws ServletException, IOException {

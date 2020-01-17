@@ -34,12 +34,12 @@
 	<div align="center">
 	
 	<c:if test="${customer != null }">
-		<form action="update_customer" method="post" id="customerForm" >
+		<form action="update_customer" method="post" id="customerForm">
 		<input type="hidden" name="bookId" value="${book.bookId}" >
 	</c:if>
 	
 	<c:if test="${customer == null }">
-		<form action="create_customer" method="post" id="customerForm" >
+		<form action="create_customer" method="post" id="customerForm">
 	</c:if>
 		
 		<table class="form">
