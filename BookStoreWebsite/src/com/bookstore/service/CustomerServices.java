@@ -80,6 +80,7 @@ public class CustomerServices {
 			String country = request.getParameter("country");
 			
 			Customer newCustomer  = new Customer();
+			newCustomer.setEmail(email);
 			newCustomer.setFullname(fullName);
 			newCustomer.setPassword(password);
 			newCustomer.setPhone(phone);
