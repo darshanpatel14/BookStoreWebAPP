@@ -1,7 +1,4 @@
-package com.bookstore.controller.frontend;
-
-
-import com.bookstore.service.BookServices;
+package com.bookstore.controller.frontend.customer;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -11,20 +8,22 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 
-@WebServlet("/view_book")
-public class ViewBookServlet extends HttpServlet {
+@WebServlet("/logout")
+public class CustomerLogoutServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
-    
-    public ViewBookServlet() {
        
+    
+    public CustomerLogoutServlet() {
+        super();
+        // TODO Auto-generated constructor stub
     }
 
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		BookServices bookServices = new BookServices(request,response);
-		bookServices.viewBookDetail();
+		request.getSession().removeAttribute("loggedCustomer");
+		
+		response.sendRedirect(request.getContextPath());
 		
 	}
 

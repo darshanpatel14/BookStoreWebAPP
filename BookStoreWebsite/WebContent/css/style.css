@@ -109,7 +109,11 @@ input {
 	margin : 5px;
 }
 
-
+table.book {
+	width: 80%;
+	border: 0;
+	margin: 0 auto;
+}
 
 
 
