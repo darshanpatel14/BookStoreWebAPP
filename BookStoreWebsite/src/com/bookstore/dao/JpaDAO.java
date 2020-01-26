@@ -65,7 +65,9 @@ public class JpaDAO<E> {
 		
 		E entity=entityManager.find(type, id);
 		
-		entityManager.refresh(entity);
+		if (entity != null) {
+			entityManager.refresh(entity);
+		}
 		
 		entityManager.close();
 		

@@ -5,9 +5,13 @@ import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -17,6 +21,11 @@ import javax.persistence.TemporalType;
  */
 @Entity
 @Table(name = "review", catalog = "bookstoredb")
+@NamedQueries({
+	
+	@NamedQuery(name="Review.listAll",query="SELECT r FROM Review r ORDER BY r.reviewTime DESC"),
+	@NamedQuery(name="Review.countAll",query="SELECT COUNT(r) FROM Review r")
+})
 public class Review implements java.io.Serializable {
 
 	private int reviewId;
@@ -26,35 +35,34 @@ public class Review implements java.io.Serializable {
 	private String headline;
 	private String comment;
 	private Date reviewTime;
-	private String reviewcol;
+	
 
 	public Review() {
 	}
 
-	public Review(int reviewId, Book book, Customer customer, int rating, String headline, String comment,
-			Date reviewTime, String reviewcol) {
-		this.reviewId = reviewId;
+	public Review(Book book, Customer customer, int rating, String headline, String comment, Date reviewTime) {
 		this.book = book;
 		this.customer = customer;
 		this.rating = rating;
 		this.headline = headline;
 		this.comment = comment;
 		this.reviewTime = reviewTime;
-		this.reviewcol = reviewcol;
 	}
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 
 	@Column(name = "review_id", unique = true, nullable = false)
-	public int getReviewId() {
+	public Integer getReviewId() {
 		return this.reviewId;
 	}
 
-	public void setReviewId(int reviewId) {
+	public void setReviewId(Integer reviewId) {
 		this.reviewId = reviewId;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
+
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "book_id", nullable = false)
 	public Book getBook() {
 		return this.book;
@@ -64,7 +72,7 @@ public class Review implements java.io.Serializable {
 		this.book = book;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "customer_id", nullable = false)
 	public Customer getCustomer() {
 		return this.customer;
@@ -111,13 +119,13 @@ public class Review implements java.io.Serializable {
 		this.reviewTime = reviewTime;
 	}
 
-	@Column(name = "reviewcol", nullable = false, length = 45)
-	public String getReviewcol() {
-		return this.reviewcol;
-	}
-
-	public void setReviewcol(String reviewcol) {
-		this.reviewcol = reviewcol;
-	}
+//	@Column(name = "reviewcol", nullable = false, length = 45)
+//	public String getReviewcol() {
+//		return this.reviewcol;
+//	}
+//
+//	public void setReviewcol(String reviewcol) {
+//		this.reviewcol = reviewcol;
+//	}
 
 }

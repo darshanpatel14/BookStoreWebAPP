@@ -2,6 +2,8 @@ package com.bookstore.dao;
 
 import static org.junit.Assert.*;
 
+import java.util.List;
+
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -44,7 +46,7 @@ public class ReviewDAOTest {
 		
 		review.setCustomer(customer);
 		review.setBook(book);
-		review.setHeadline("This is very Good Book");
+		review.setHeadline("This is Good Book");
 		review.setRating(5);
 		review.setComment("I have just read this book ,very good");
 		
@@ -56,27 +58,62 @@ public class ReviewDAOTest {
 
 	@Test
 	public void testUpdateReview() {
-		fail("Not yet implemented");
+		
+		Integer reviewId =1;
+		
+		Review review =reviewDAO.get(reviewId);
+		
+		review.setHeadline("Excellent book");
+		
+		Review updatedReview = reviewDAO.update(review);
+		
+		assertEquals(review.getHeadline(),updatedReview.getHeadline());
 	}
 
 	@Test
 	public void testGet() {
-		fail("Not yet implemented");
+		
+		Integer reviewId =1;
+		
+		Review review =reviewDAO.get(reviewId);
+		
+		assertNotNull(review);
 	}
 
 	@Test
-	public void testDeleteObject() {
-		fail("Not yet implemented");
+	public void testDeleteReview() {
+		
+		int reviewId = 7 ;
+		reviewDAO.delete(reviewId);
+		
+		Review review = reviewDAO.get(reviewId);
+		
+		assertNull(review);	
+		
 	}
 
 	@Test
 	public void testListAll() {
-		fail("Not yet implemented");
+		
+		List<Review> listReview  = reviewDAO.listAll();
+		
+		for(Review review:listReview) {
+			
+			System.out.println(review.getReviewId() + " " + review.getBook().getTitle() + " " + review.getCustomer().getFullname());
+		}
+		
+		assertTrue(listReview.size() > 0);
 	}
 
 	@Test
 	public void testCount() {
-		fail("Not yet implemented");
+		
+		long totalReview = reviewDAO.count();
+		
+		System.out.println("Total reviews : "  + totalReview);
+		
+		assertTrue(totalReview > 0); 
+		
 	}
 
 }

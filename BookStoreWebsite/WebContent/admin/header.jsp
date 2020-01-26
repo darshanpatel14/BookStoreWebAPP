@@ -56,7 +56,7 @@
 	</div>
 	
 	<div >
-			<a href="reviws">
+			<a href="list_review">
 		<img src="../images/review.png" /><br/>
 		
 		Reviews
