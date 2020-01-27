@@ -31,7 +31,7 @@
 				</div>
 				<div>
 					
-					Rating *****
+					<jsp:directive.include file="book_rating.jsp" />
 				
 				</div>
 				
